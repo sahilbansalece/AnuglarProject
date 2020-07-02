@@ -1,0 +1,75 @@
+<div class="py-5">
+  <div class="row">
+    <div class="col-6 m-auto">
+      <div class="card m-auto">
+        <div class="card-header">
+          <h3 class="mb-0">Register</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup] = "registrationForm" (ngSubmit)="onSubmit"> 
+            <div class="form-group">
+              <label for="uname1">Name</label>
+              <input type="text" formControlName="name" class="form-control rounded-0" required>
+              <span *ngIf ="!registrationForm.get('name').valid && registrationForm.get('name').touched" class="error-block">
+                  Name Require atleast 3 characters</span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input  type="text" formControlName="email" class="form-control rounded-0">
+              <span *ngIf = "!registrationForm.get('email').valid && registrationForm.get('email')touched" class="error-block">
+                  <span *ngIf = "registrationForm.get('email').hasError('required')">
+                      please provide email id
+
+                  </span>
+<span *ngif="registrationForm.get('email').hasError('email')">
+    please provide valide email id
+</span>
+              </span>
+            
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" formControlName="password" class="form-control rounded-0"  required>
+              <span *ngIf ="!registrationForm.get('password').valid && registrationForm.get('password').touched" class="error-block">
+                  <span *ngIf="registrationForm.get('password').errors['required']">
+                      please provide password
+
+                  </span>
+                  <span *ngIf ="registrationForm.get('password').errors.minlength">
+                      password should not less than 8 characters
+                       
+                  </span>
+
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password"formControlName="confirmPassword" class="form-control rounded-0"  required>
+              <span *ngIf= "!registrationForm.get('confirmPassword').valid && registrationForm.get('confirmPassword').touched">
+                <span *ngIf="registrationForm.get('confirmPassword').hasError('required')">
+                    please confirm pasword
+                </span>
+                <span *ngIf="registrationForm.hasError('notmatched') && registrationForm.get('confirmPassword').valid">
+                    password not matched
+
+                </span>
+              </span>
+            </div>
+            <div class="form-group">
+              <label >Phone Number</label>
+              <input  formControlName="phone" type="tel"  class="form-control rounded-0"  required>
+              <span *ngIf ="!registrationForm.get('phone').valid && registrationForm.get('phone').touched" class="error-block">
+                Phone number must be of 10 characters</span>
+            </div>
+           
+            
+            <button type="button" class="btn btn-primary float-right">Register</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
