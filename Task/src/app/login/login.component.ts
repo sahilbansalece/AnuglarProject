@@ -19,12 +19,11 @@ export class LoginComponent implements OnInit {
   constructor(private cs: CommonService, private lb: FormBuilder, private _auth: AuthService) { }
 
   ngOnInit(): void {
-    this.createloginform();
-    if(this.cs.isloggedin)
-    {  
-      ///redirect to homepage
-
+    var LoggedIn = localStorage.getItem("isLogin");
+    if (LoggedIn === "true") {
+      window.location.replace("/home");
     }
+    this.createloginform();
   }
 
   createloginform()
@@ -37,19 +36,14 @@ export class LoginComponent implements OnInit {
 
   loginUser()
   {
-
-  this._auth.registerUser(this.loginform)
-  .subscribe(
-    res => console.log(res),
-    err => console.log(err)
-  )
-  this.user = Object.assign(this.user, this.loginform.value);
-  localStorage.setItem('Users', JSON.stringify(this.user));
-    if(this.userName == "shivam" && this.password=="123")
+    this.user = Object.assign(this.user, this.loginform.value);
+    localStorage.setItem('Users', JSON.stringify(this.user));
+    if ((this.user.email == "Shivam" && this.user.password == "Test123") || (this.user.email == "Sahil" && this.user.password == "Test123") || (this.user.email == "Palak" && this.user.password == "Test123"))
     {
-      this.cs.userName= "shivam";
-      this.cs.isloggedin = true;
-       //redirect to homepage
+      localStorage.setItem("isLogin", "true");
+      localStorage.setItem("User", this.user.email);
+      localStorage.setItem("password",this.user.password);
+      window.location.replace("/home");
 
     }
   } 

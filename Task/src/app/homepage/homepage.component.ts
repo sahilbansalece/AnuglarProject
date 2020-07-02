@@ -10,18 +10,23 @@ import { Component, OnInit } from '@angular/core';
 export class HomepageComponent implements OnInit {
 
   username = "";
+  password = "";
 
   constructor(private cs : CommonService) { }
 
   ngOnInit(): void {
+    var loggedin = localStorage.getItem("isLogin");
+    if (loggedin !== "true") {
+      window.location.replace("/login");
+    } else {
+      this.username = localStorage.getItem("User");
+      this.password = localStorage.getItem("password");
+    }
+  }
 
-    if(!this.cs.isloggedin || this.cs.userName=="")
-    {
-      //redirect to login
-    }
-    else{
-      this.username= this.cs.userName
-    }
+  logout() {
+    localStorage.clear();
+    window.location.replace("/login");
   }
 
 }
