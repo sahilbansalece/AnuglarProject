@@ -62,7 +62,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Task:build"
+            "browserTarget": "Task:build",
+            "port" : 5080
           },
           "configurations": {
             "production": {
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Task"
+    }
+  },
+  "defaultProject": "Task",
+  "cli": {
+    "analytics": "a7a77601-b49a-4ce0-8f60-fee9894df242"
+  }
 }
