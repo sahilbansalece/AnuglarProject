@@ -11,6 +11,7 @@ export class HomepageComponent implements OnInit {
 
   username = "";
   password = "";
+  countryData;
 
   constructor(private cs : CommonService) { }
 
@@ -21,6 +22,10 @@ export class HomepageComponent implements OnInit {
     } else {
       this.username = localStorage.getItem("User");
       this.password = localStorage.getItem("password");
+      this.cs.getCountryData().subscribe((data) => {
+        this.countryData = data;
+        console.log(data);
+      })
     }
   }
 

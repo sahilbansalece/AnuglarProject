@@ -1,6 +1,25 @@
 <h1>Welcome To homepage</h1>
 
-<br/>
+<br />
 <p>Hi {{username}} , Your password is {{password}}</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>Country Name</td>
+      <td>Capital</td>
+      <td>Population</td>
+      <td>Sub Region</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let country of countryData.slice(0,10); let i = index">
+      <td>{{country.name}}</td>
+      <td>{{country.capital}}</td>
+      <td>{{country.population}}</td>
+      <td>{{country.subregion}}</td>
+    </tr>
+  </tbody>
+</table>
 
 <button class="btn-primary" (click)="logout()">Logout</button>
